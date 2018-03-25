@@ -33,11 +33,11 @@ public class RockPaperScissorsFragment extends Fragment {
                 int result = button.getHand().compareTo(opponentHand);
 
                 TextView resultTextView = ((TextView) getActivity().findViewById(R.id.text_view));
-                if (result < 0) {
+                if (Hand.Result.LOSE == result) {
                     resultTextView.setText(resultTextView.getText() + "LOSE"
                             + "(You: " + button.getHand().toString() + ", Opponent: "
                             + opponentHand.toString() + ")\n");
-                } else if (result > 0) {
+                } else if (Hand.Result.WIN == result) {
                     resultTextView.setText(resultTextView.getText() + "WIN"
                             + "(You: " + button.getHand().toString() + ", Opponent: "
                             + opponentHand.toString() + ")\n");

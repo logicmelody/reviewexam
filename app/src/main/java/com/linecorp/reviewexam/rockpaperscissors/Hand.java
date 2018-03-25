@@ -5,6 +5,12 @@ package com.linecorp.reviewexam.rockpaperscissors;
  */
 public class Hand implements Comparable<Hand> {
 
+    public static final class Result {
+        public static final int WIN = 1;
+        public static final int LOSE = -1;
+        public static final int DRAW = 0;
+    }
+
     public static final Hand ROCK = new Hand(0);
     public static final Hand PAPER = new Hand(1);
     public static final Hand SCISSORS = new Hand(2);
@@ -30,9 +36,18 @@ public class Hand implements Comparable<Hand> {
 
     @Override
     public int compareTo(Hand another) {
-        if ((this == ROCK || this == SCISSORS) && (another == ROCK || another == SCISSORS)) {
-            return handValue - another.handValue;
+        if (handValue == another.handValue) {
+            return Result.DRAW;
         }
-        return -handValue + another.handValue;
+
+        if (this == ROCK) {
+            return another == SCISSORS ? Result.WIN : Result.LOSE;
+
+        } else if (this == SCISSORS) {
+            return another == PAPER ? Result.WIN : Result.LOSE;
+
+        } else {
+            return another == ROCK ? Result.WIN : Result.LOSE;
+        }
     }
 }
